@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vipul Prasad — Resume</title>
+<style>
+  @page { size: A4; margin: 12mm 14mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+    font-size: 9.8pt;
+    line-height: 1.38;
+    color: #1a1c1e;
+  }
+  .accent { color: #0f6b5c; }
+  header { text-align: center; padding-bottom: 8pt; border-bottom: 2.5pt solid #0f6b5c; margin-bottom: 10pt; }
+  h1 { font-size: 19pt; letter-spacing: 0.5pt; }
+  .contact-line { font-size: 9pt; color: #4a5158; margin-top: 3pt; }
+  h2 {
+    font-size: 10.5pt; text-transform: uppercase; letter-spacing: 1.2pt;
+    color: #0f6b5c; margin: 8pt 0 4pt 0;
+    border-bottom: 0.75pt solid #d7dbdd; padding-bottom: 2pt;
+  }
+  .entry-head { display: flex; justify-content: space-between; align-items: baseline; }
+  h3 { font-size: 10.5pt; }
+  .entry-meta { font-size: 9.5pt; color: #4a5158; }
+  .entry-date { font-size: 9pt; color: #6b7280; white-space: nowrap; }
+  ul { margin: 3pt 0 0 0; padding-left: 14pt; }
+  li { margin-bottom: 1.8pt; }
+  .skills p { margin-bottom: 2pt; }
+  .skills b { color: #0f6b5c; }
+  .edu p { margin-bottom: 1.5pt; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>VIPUL PRASAD</h1>
+  <p class="contact-line">
+    +91 8707558782 &nbsp;|&nbsp; vipulprasad108@gmail.com &nbsp;|&nbsp; linkedin.com/in/vipu1prasad &nbsp;|&nbsp; github.com/VipPrasad
+  </p>
+</header>
+
+<section>
+  <h2>Career Objective</h2>
+  <p>
+    Java/Spring Developer (Fresher) with hands-on experience building backend and full-stack systems in Java,
+    Spring Boot, and REST APIs. Comfortable with object-oriented design, multithreading, and database-backed
+    services; looking to contribute to a professional backend engineering team.
+  </p>
+</section>
+
+<section class="skills">
+  <h2>Skills &amp; Tools</h2>
+  <p><b>Languages:</b> Java (Core &amp; Advanced), JavaScript</p>
+  <p><b>Backend:</b> Spring, Spring Boot, RESTful APIs, JDBC, Servlets</p>
+  <p><b>Core Concepts:</b> OOP, SOLID &amp; DRY Principles, Data Structures &amp; Algorithms, Multithreading &amp; Java Concurrent Package, Networking Fundamentals</p>
+  <p><b>Database:</b> MySQL, MongoDB, Spring Data JPA, SQL</p>
+  <p><b>Frontend:</b> React.js, Next.js, HTML, CSS, Tailwind CSS</p>
+  <p><b>Security:</b> JWT, RSA/AES Encryption (Hybrid Cryptography)</p>
+  <p><b>Tools:</b> Git, GitHub, VS Code, IntelliJ, Postman</p>
+  <p><b>AI Integration:</b> Spring AI, Gemini API</p>
+</section>
+
+<section>
+  <h2>Projects</h2>
+
+  <div class="entry-head">
+    <h3>UPI Offline Mesh — Deferred Settlement System</h3>
+    <span class="entry-date">Java · Spring Boot · Spring Data JPA · Multithreading</span>
+  </div>
+  <ul>
+    <li>Built a Spring Boot backend simulating offline UPI-style payments relayed device-to-device through a Bluetooth-style mesh network until reaching internet connectivity.</li>
+    <li>Implemented hybrid RSA-2048 + AES-256-GCM encryption to keep payment data unreadable to intermediate relay nodes in transit.</li>
+    <li>Designed an idempotency mechanism using atomic compare-and-set on ciphertext hashes, guaranteeing exactly-once settlement even when a payment arrives through multiple concurrent bridge nodes.</li>
+    <li>Validated correctness with concurrency tests simulating simultaneous duplicate delivery and tampered-payload rejection.</li>
+  </ul>
+
+  <div class="entry-head" style="margin-top:6pt;">
+    <h3>Smart Email Assistant</h3>
+    <span class="entry-date">Java · Spring Boot · Spring AI · Gemini API · REST APIs</span>
+  </div>
+  <ul>
+    <li>Built a Smart Email Assistant backend using Spring Boot and Spring AI, integrating Google's Gemini API to generate context-aware email reply drafts.</li>
+    <li>Designed REST endpoints that accept incoming email content and return AI-generated replies, with configurable tone/style parameters passed through to the model prompt.</li>
+    <li>Structured the Spring AI service layer to keep prompt construction, model invocation, and response handling decoupled for easier maintenance and future provider swaps.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="edu">
+    <div class="entry-head">
+      <h3>B.Tech, Computer Science &amp; Engineering</h3>
+      <span class="entry-date">Aug 2020 – June 2024</span>
+    </div>
+    <p class="entry-meta">ABES Engineering College</p>
+
+    <div class="entry-head" style="margin-top:4pt;">
+      <h3>Senior Secondary (ICSE)</h3>
+      <span class="entry-date">2019 – 2020</span>
+    </div>
+    <p class="entry-meta">St. John's School</p>
+  </div>
+</section>
+
+<section>
+  <h2>Certifications &amp; Learning</h2>
+  <ul>
+    <li>The Complete Full-Stack Web Development Bootcamp — Udemy (April 2025)</li>
+    <li>Java Full-Stack Development Course — QSpiders</li>
+  </ul>
+</section>
+
+</body>
+</html>

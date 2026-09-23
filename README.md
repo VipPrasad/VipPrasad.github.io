@@ -35,12 +35,30 @@ Everything lives in three files:
 | `index.html` | Text content, links, projects |
 | `styles.css` | Colors (see `:root` variables at top), fonts, spacing |
 | `script.js` | Only needed if you add new interactive features |
+| `resume.html` | Resume content — `resume.pdf` is generated from this file (see below) |
 
 ### Common edits
 
 - **GitHub links** — search for `https://github.com/` in `index.html` and replace with your real profile / repo URLs (appears in hero, project cards).
 - **Accent color** — change `--accent` and `--accent-text` in `styles.css` `:root`.
 - **Add a project** — copy an `<article class="project-card">` block in `index.html`.
+
+## Updating your resume
+
+`resume.html` is the **source of truth**; `resume.pdf` (linked from the site's Download Resume buttons) is generated from it.
+
+1. Edit the content in `resume.html`
+2. Optionally preview the PDF locally:
+   ```bash
+   bash scripts/build-resume.sh
+   ```
+3. Commit and push `resume.html`:
+   ```bash
+   git add resume.html && git commit -m "Update resume" && git push
+   ```
+4. A GitHub Actions workflow (`.github/workflows/build-resume.yml`) detects the change, regenerates `resume.pdf` in the cloud, and commits it automatically — the site's download link updates on its own.
+
+> Note: editing `resume.pdf` directly is pointless — always edit `resume.html` and let the PDF be regenerated.
 
 ## Deploy (free)
 

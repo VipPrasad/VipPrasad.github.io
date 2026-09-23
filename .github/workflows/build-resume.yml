@@ -1,0 +1,48 @@
+name: Build resume.pdf
+
+# Regenerates resume.pdf whenever the resume source changes,
+# or when triggered manually, then commits the result.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "resume.html"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Google Chrome (official package)
+        run: |
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub \
+            | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" \
+            | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Generate resume.pdf from resume.html
+        run: |
+          google-chrome --headless --disable-gpu --no-sandbox \
+            --no-pdf-header-footer \
+            --print-to-pdf=resume.pdf \
+            "file://$(pwd)/resume.html"
+
+      - name: Commit updated PDF (if changed)
+        run: |
+          if git diff --quiet -- resume.pdf; then
+            echo "PDF unchanged — nothing to commit."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add resume.pdf
+            git commit -m "Auto-regenerate resume.pdf from resume.html [skip ci]"
+            git push
+          fi
