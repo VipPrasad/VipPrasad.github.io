@@ -1,5 +1,7 @@
 # Vipul Prasad — Portfolio
 
+🔗 **Live site: https://vipprasad.github.io**
+
 A clean, minimal, professional portfolio built with plain **HTML / CSS / JavaScript** — no frameworks, no build step, no dependencies.
 
 ## Sections
@@ -11,19 +13,18 @@ A clean, minimal, professional portfolio built with plain **HTML / CSS / JavaScr
 - **Education & Certifications** — vertical timeline
 - **Contact** — email CTA + phone / LinkedIn links
 
-## Run it locally
+## Run it locally (optional)
 
-Just open `index.html` in your browser. Or serve it:
+The site is already live — this is only for previewing local edits before pushing.
+
+`localhost` is your own machine: the address only works while a local server is running in this folder.
 
 ```bash
-# Python
+# Start a local server (keep the terminal open)
 python -m http.server 8000
 
-# Node
-npx serve .
+# Then open http://localhost:8000 in your browser
 ```
-
-Then visit http://localhost:8000
 
 ## Customize
 
