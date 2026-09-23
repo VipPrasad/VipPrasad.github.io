@@ -19,21 +19,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Google Chrome (official package)
+      - name: Locate or install Chrome
+        id: chrome
         run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub \
-            | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
-          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" \
-            | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || true)"
+          if [ -z "$CHROME_BIN" ]; then
+            echo "Chrome not preinstalled — installing via @puppeteer/browsers ..."
+            npx -y @puppeteer/browsers install chrome@stable --path "$HOME/chrome" >/dev/null
+            CHROME_BIN="$(find "$HOME/chrome" -name chrome -type f | head -1)"
+          fi
+          echo "Using browser: $CHROME_BIN"
+          echo "bin=$CHROME_BIN" >> "$GITHUB_OUTPUT"
 
       - name: Generate resume.pdf from resume.html
         run: |
-          google-chrome --headless --disable-gpu --no-sandbox \
+          "${{ steps.chrome.outputs.bin }}" --headless=new --disable-gpu --no-sandbox \
             --no-pdf-header-footer \
             --print-to-pdf=resume.pdf \
             "file://$(pwd)/resume.html"
+          ls -la resume.pdf
 
       - name: Commit updated PDF (if changed)
         run: |
