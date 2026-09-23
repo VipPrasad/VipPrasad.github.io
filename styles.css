@@ -338,6 +338,13 @@ a:hover { text-decoration: underline; }
 .contact-inner .section-title { justify-content: center; }
 .contact-text { color: var(--text-soft); font-size: 1.05rem; margin-bottom: 2.5rem; }
 
+.contact-cta { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+@media (max-width: 480px) {
+  .contact-cta { flex-direction: column; }
+  .contact-cta .btn { width: 100%; }
+}
+
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--border); padding: 2rem 0; }
 .footer-inner { text-align: center; }
